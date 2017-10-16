@@ -1,30 +1,25 @@
 // @flow weak
 
-import { connect }            from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as viewsActions      from '../../redux/modules/views';
-import Home                   from './Home';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import Home from "./Home";
+import * as dataActions from "../../redux/modules/leaderboardData";
 
-
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     // views
-    currentView:  state.views.currentView
+    inputData: state.formData.input,
+    leaderboardData: state.leaderboardData
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      // views
-      enterHome: viewsActions.enterHome,
-      leaveHome: viewsActions.leaveHome
+      parseData: dataActions.parseData
     },
     dispatch
   );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

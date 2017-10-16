@@ -22,7 +22,7 @@ class App extends Component {
     currentView: PropTypes.string
 
   };
-  
+
   state = {
     navModel : navigationModel
   };
@@ -32,19 +32,9 @@ class App extends Component {
 
     return (
       <div id="appContainer">
-        <NavigationBar
-          brand={navModel.brand}
-          navModel={navModel}
-          handleLeftNavItemClick={this.handleLeftNavItemClick}
-          handleRightNavItemClick={this.handleRightNavItemClick}
-        />
         <div className="container-fluid">
           <MainRoutes />
         </div>
-        <BackToTop
-          minScrollY={40}
-          scrollTo={'appContainer'}
-        />
       </div>
     );
   }
