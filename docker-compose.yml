@@ -1,0 +1,12 @@
+version: "2"
+services:
+  frontend:
+      build: .
+      image: mistivit/frontend
+      command: npm run start
+      restart: on-failure
+      ports:
+        - "3000:3000"
+      volumes:
+        - .:/usr/src/app
+        - /usr/src/app/node_modules

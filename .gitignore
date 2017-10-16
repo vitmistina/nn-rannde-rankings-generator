@@ -2,8 +2,11 @@ node_modules/
 .idea/
 *.log
 
+**/.DS_Store
+
 build/
 dist/
 public/assets/
+docs
 /coverage
 /.nyc_output
