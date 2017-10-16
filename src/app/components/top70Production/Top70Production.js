@@ -23,7 +23,7 @@ export default class Top70Production extends PureComponent {
               "top70Production"
             ).map((agent, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{agent.posun}</td>
                   <td>{agent.agentura}</td>

@@ -49,6 +49,75 @@ class Home extends Component {
               />
             </div>
             <div className="form-group">
+              <label htmlFor=".top10Meetings" className="form-label">
+                Top 10 v % schůzkovatelnosti:
+              </label>
+              <Control.textarea
+                model=".top10Meetings"
+                required
+                id="top10Meetings"
+                validateOn={["blur"]}
+                className="form-control"
+                rows="2"
+              />
+              <Errors
+                className="has-error"
+                component={props => (
+                  <span className="help-block">{props.children}</span>
+                )}
+                model=".top10Meetings"
+                messages={{
+                  valueMissing: "Tato položka je povinná"
+                }}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor=".topUMsPercentage" className="form-label">
+                Žebříček UM:
+              </label>
+              <Control.textarea
+                model=".topUMsPercentage"
+                required
+                id="topUMsPercentage"
+                validateOn={["blur"]}
+                className="form-control"
+                rows="2"
+              />
+              <Errors
+                className="has-error"
+                component={props => (
+                  <span className="help-block">{props.children}</span>
+                )}
+                model=".topUMsPercentage"
+                messages={{
+                  valueMissing: "Tato položka je povinná"
+                }}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor=".timeline" className="form-label">
+                Časová řada:
+              </label>
+              <Control.textarea
+                model=".timeline"
+                required
+                id="timeline"
+                validateOn={["blur"]}
+                className="form-control"
+                rows="2"
+              />
+              <Errors
+                className="has-error"
+                component={props => (
+                  <span className="help-block">{props.children}</span>
+                )}
+                model=".timeline"
+                messages={{
+                  valueMissing: "Tato položka je povinná"
+                }}
+              />
+            </div>
+            <div className="form-group">
               <button type="submit" className="btn btn--primary btn--lg">
                 Vygenerovat
               </button>
