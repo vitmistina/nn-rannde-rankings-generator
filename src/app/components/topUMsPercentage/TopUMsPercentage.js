@@ -10,25 +10,38 @@ export default class TopUMsPercentage extends PureComponent {
     return (
       <div className="col-md-12">
         <h2 className="">Žebříček UM podle zachráněných prostředků</h2>
-        {list &&
-          _.slice(list, 0, 16).map((agent, index) => {
-            return (
-              <div className="col-md-6 top-um-card" key={index}>
-                <div className="col-md-1">
-                  <strong>{index + 1}.</strong>
-                </div>
-                <div className="col-md-1">
-                  <AgencyLabel data={agent.agentura} />
-                </div>
-                <div className="col-md-5">{agent.jmeno}</div>
-                <div className="col-md-3">
-                  <strong>
-                    {Number(agent.procento).toLocaleString("cs-CZ")} %
-                  </strong>
-                </div>
-              </div>
-            );
-          })}
+        {_.chunk(
+          _.slice(list, 0, 16),
+          _.ceil(_.size(_.slice(list, 0, 16)) / 2)
+        ).map((column, columnIndex) => {
+          return (
+            <div className="col-md-6">
+              {column.map((agent, index) => {
+                return (
+                  <div className="top-um-card" key={index}>
+                    <div className="col-md-1">
+                      <strong>
+                        {index +
+                          1 +
+                          columnIndex *
+                            _.ceil(_.size(_.slice(list, 0, 16)) / 2)}.
+                      </strong>
+                    </div>
+                    <div className="col-md-1">
+                      <AgencyLabel data={agent.agentura} />
+                    </div>
+                    <div className="col-md-5">{agent.jmeno}</div>
+                    <div className="col-md-3">
+                      <strong>
+                        {Number(agent.procento).toLocaleString("cs-CZ")} %
+                      </strong>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
         <div className="col-md-12 all-um-container">
           {list &&
             _.slice(list, 16).map((agent, index) => {

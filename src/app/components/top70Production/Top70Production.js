@@ -9,35 +9,50 @@ export default class Top70Production extends PureComponent {
     return (
       <div>
         <h2 className="">Soutěž od 70 CCS karet</h2>
-        <div className="col-md-4">
-          <table className="table table-responsive table--stripped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Agentura</th>
-                <th>Jméno</th>
-                <th>Výsledek</th>
-              </tr>
-            </thead>
-            <tbody>
-              {_.get(this.props, "top70Production") &&
-                _.get(this.props, "top70Production").map((agent, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>
-                        <AgencyLabel data={agent.agentura} />
-                      </td>
-                      <td>{agent.jmeno}</td>
-                      <td>
-                        {Number(agent.produkce).toLocaleString("cs-CZ")} Kč
-                      </td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
-        </div>
+        {_.chunk(
+          top70Production,
+          _.ceil(_.size(top70Production) / 3)
+        ).map((column, columnIndex) => {
+          return (
+            <div className="col-md-4">
+              <table className="table table-responsive table--stripped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Agentura</th>
+                    <th>Jméno</th>
+                    <th>Výsledek</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {column.map((agent, index) => {
+                    return (
+                      <tr
+                        key={
+                          index +
+                          columnIndex * _.ceil(_.size(top70Production) / 3)
+                        }
+                      >
+                        <td>
+                          {index +
+                            1 +
+                            columnIndex * _.ceil(_.size(top70Production) / 3)}
+                        </td>
+                        <td>
+                          <AgencyLabel data={agent.agentura} />
+                        </td>
+                        <td>{agent.jmeno}</td>
+                        <td>
+                          {Number(agent.produkce).toLocaleString("cs-CZ")} Kč
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          );
+        })}
       </div>
     );
   }
