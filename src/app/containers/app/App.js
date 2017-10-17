@@ -1,30 +1,24 @@
 // @flow weak
 
-import React, {
-  Component
-}                             from 'react';
-import PropTypes              from 'prop-types';
-import {
-  NavigationBar,
-  BackToTop
-}                             from '../../components';
-import navigationModel        from '../../config/navigation.json';
-import MainRoutes             from '../../routes/MainRoutes';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { NavigationBar, BackToTop } from "../../components";
+import navigationModel from "../../config/navigation.json";
+import MainRoutes from "../../routes/MainRoutes";
 
 class App extends Component {
   static propTypes = {
     // react-router 4:
-    match:    PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
-    history:  PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
 
     // views:
     currentView: PropTypes.string
-
   };
 
   state = {
-    navModel : navigationModel
+    navModel: navigationModel
   };
 
   render() {
@@ -33,7 +27,9 @@ class App extends Component {
     return (
       <div id="appContainer">
         <div className="container-fluid">
-          <MainRoutes />
+          <div className="clearfix main-container">
+            <MainRoutes />
+          </div>
         </div>
       </div>
     );
@@ -41,11 +37,11 @@ class App extends Component {
 
   handleLeftNavItemClick = (event, viewName) => {
     // something to do here?
-  }
+  };
 
   handleRightNavItemClick = (event, viewName) => {
     // something to do here?
-  }
+  };
 }
 
 export default App;

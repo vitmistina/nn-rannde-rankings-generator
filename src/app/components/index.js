@@ -8,3 +8,4 @@ export { default as Top10Meetings } from "./top10Meetings/Top10Meetings";
 export {
   default as TopUMsPercentage
 } from "./topUMsPercentage/TopUMsPercentage";
+export { default as AgencyLabel } from "./agencyLabel/AgencyLabel";

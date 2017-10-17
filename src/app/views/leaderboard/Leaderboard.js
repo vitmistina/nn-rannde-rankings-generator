@@ -20,22 +20,23 @@ class Leaderboard extends PureComponent {
   render() {
     return (
       <div>
-        <div className="col-md-8">
+        <div className="col-md-12">
+          <div className="col-md-12">
+            <h1>
+              <span className="nn-light-orange">NN</span>{" "}
+              <span className="nn-medium-orange">Maturity</span>
+            </h1>
+          </div>
+        </div>
+        <div className="col-md-12">
           <Top10Meetings
             list={_.get(this.props, "leaderboardData.top10Meetings")}
           />
           <TopUMsPercentage
             list={_.get(this.props, "leaderboardData.topUMsPercentage")}
           />
-          <pre>
-            {JSON.stringify(
-              _.get(this.props, "leaderboardData.top10Meetings"),
-              null,
-              2
-            )}
-          </pre>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-12">
           <Top70Production
             top70Production={_.get(
               this.props,
