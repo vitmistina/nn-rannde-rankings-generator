@@ -3,7 +3,11 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
-import { Top70Production, Top10Meetings } from "../../components";
+import {
+  Top70Production,
+  Top10Meetings,
+  TopUMsPercentage
+} from "../../components";
 
 class Leaderboard extends PureComponent {
   static propTypes = {
@@ -19,6 +23,9 @@ class Leaderboard extends PureComponent {
         <div className="col-md-8">
           <Top10Meetings
             list={_.get(this.props, "leaderboardData.top10Meetings")}
+          />
+          <TopUMsPercentage
+            list={_.get(this.props, "leaderboardData.topUMsPercentage")}
           />
           <pre>
             {JSON.stringify(
