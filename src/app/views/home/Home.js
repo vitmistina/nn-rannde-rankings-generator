@@ -100,7 +100,6 @@ class Home extends Component {
               </label>
               <Control.textarea
                 model=".timeline"
-                required
                 id="timeline"
                 validateOn={["blur"]}
                 className="form-control"

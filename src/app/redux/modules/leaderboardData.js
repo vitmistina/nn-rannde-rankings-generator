@@ -31,47 +31,40 @@ export function parseData(form, history) {
     dispatch({
       type: PARSE_DATA,
       top70Production: _.map(
-        _.tail(_.split(form.top70Production, "\n")),
+        _.slice(_.tail(_.split(form.top70Production, "\n")), 0, 70),
         row => {
           const parsedRow = _.split(row, "\t");
           return {
-            posun: _.nth(parsedRow, 0),
-            agentura: _.nth(parsedRow, 1),
-            jmeno: _.nth(parsedRow, 2),
-            produkce: _.nth(parsedRow, 3)
+            posun: null,
+            agentura: _.nth(parsedRow, 0).substring(0, 2),
+            jmeno: _.nth(parsedRow, 1),
+            produkce: _.nth(parsedRow, 2)
           };
         }
       ),
-      top10Meetings: _.map(
-        _.tail(_.split(form.top10Meetings, "\n")),
-        row => {
-          return {
-            jmeno: row
-          };
-        }
-      ),
+      top10Meetings: _.map(_.tail(_.split(form.top10Meetings, "\n")), row => {
+        return {
+          jmeno: row
+        };
+      }),
       topUMsPercentage: _.map(
         _.tail(_.split(form.topUMsPercentage, "\n")),
         row => {
           const parsedRow = _.split(row, "\t");
           return {
-            jmeno: _.nth(parsedRow, 0),
-            posun: _.nth(parsedRow, 1),
-            agentura: _.nth(parsedRow, 2),
-            procento: _.nth(parsedRow, 3)
+            agentura: _.nth(parsedRow, 0).substring(0, 2),
+            jmeno: _.nth(parsedRow, 1),
+            procento: _.nth(parsedRow, 2)
           };
         }
       ),
-      timeline: _.map(
-        _.tail(_.split(form.timeline, "\n")),
-        row => {
-          const parsedRow = _.split(row, "\t");
-          return {
-            datum: _.nth(parsedRow, 0),
-            produkce: _.nth(parsedRow, 1),
-          };
-        }
-      )
+      timeline: _.map(_.tail(_.split(form.timeline, "\n")), row => {
+        const parsedRow = _.split(row, "\t");
+        return {
+          datum: _.nth(parsedRow, 0),
+          produkce: _.nth(parsedRow, 1)
+        };
+      })
     });
     dispatch(history.push("/zebricek"));
   };

@@ -23,12 +23,8 @@ export default class Top10Meetings extends PureComponent {
         </div>
         <div className="col-md-4">
           <div className="col-md-12 top-3-in-meetings">
-            <div className="col-md-4">
-              <img
-                src="null"
-                alt="obrázek tabletu"
-                className="picture-tablet"
-              />
+            <div className="col-md-4 text-right">
+              <img src="null" alt="obrázek tabletu" className="picture-phone" />
             </div>
             <div className="col-md-8">
               <span>

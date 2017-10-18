@@ -8,7 +8,9 @@ export default class Top70Production extends PureComponent {
     const { top70Production } = this.props;
     return (
       <div>
-        <h2 className="">Soutěž od 70 CCS karet</h2>
+        <h2 className="">
+          Soutěž o 70 CCS karet dle objemu převedených prostředků
+        </h2>
         {_.chunk(
           top70Production,
           _.ceil(_.size(top70Production) / 3)
@@ -42,9 +44,7 @@ export default class Top70Production extends PureComponent {
                           <AgencyLabel data={agent.agentura} />
                         </td>
                         <td>{agent.jmeno}</td>
-                        <td>
-                          {Number(agent.produkce).toLocaleString("cs-CZ")} Kč
-                        </td>
+                        <td className="text-right">{agent.produkce}</td>
                       </tr>
                     );
                   })}

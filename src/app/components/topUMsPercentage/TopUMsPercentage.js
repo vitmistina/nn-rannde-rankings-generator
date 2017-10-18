@@ -9,7 +9,9 @@ export default class TopUMsPercentage extends PureComponent {
     const { list } = this.props;
     return (
       <div className="col-md-12">
-        <h2 className="">Žebříček UM podle zachráněných prostředků</h2>
+        <h2 className="">
+          Žebříček UM podle podílu zachráněných prostředků z celkových maturit
+        </h2>
         {_.chunk(
           _.slice(list, 0, 16),
           _.ceil(_.size(_.slice(list, 0, 16)) / 2)
@@ -31,10 +33,8 @@ export default class TopUMsPercentage extends PureComponent {
                       <AgencyLabel data={agent.agentura} />
                     </div>
                     <div className="col-md-5">{agent.jmeno}</div>
-                    <div className="col-md-3">
-                      <strong>
-                        {Number(agent.procento).toLocaleString("cs-CZ")} %
-                      </strong>
+                    <div className="col-md-3 text-right">
+                      <strong>{agent.procento}</strong>
                     </div>
                   </div>
                 );
@@ -43,14 +43,29 @@ export default class TopUMsPercentage extends PureComponent {
           );
         })}
         <div className="col-md-12 all-um-container">
-          {list &&
-            _.slice(list, 16).map((agent, index) => {
-              return (
-                <div className="col-md-3" key={index}>
-                  <strong>{index + 1 + 16}.</strong> {agent.jmeno}
-                </div>
-              );
-            })}
+          {_.chunk(
+            _.slice(list, 16),
+            _.ceil(_.size(_.slice(list, 16)) / 4)
+          ).map((column, columnIndex) => {
+            return (
+              <div className="col-md-3" key={columnIndex}>
+                {column.map((agent, index) => {
+                  return (
+                    <div>
+                      {" "}
+                      <strong>
+                        {index +
+                          1 +
+                          16 +
+                          columnIndex * _.ceil(_.size(_.slice(list, 16)) / 4)}.
+                      </strong>{" "}
+                      {agent.jmeno}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
       </div>
     );
