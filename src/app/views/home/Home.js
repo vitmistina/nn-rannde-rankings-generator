@@ -26,59 +26,13 @@ class Home extends Component {
             className="form-horizontal"
           >
             <div className="form-group">
-              <label htmlFor=".top70Production" className="form-label">
-                Top 70 v převodech:
-              </label>
-              <Control.textarea
-                model=".top70Production"
-                required
-                id="top70Production"
-                validateOn={["blur"]}
-                className="form-control"
-                rows="2"
-              />
-              <Errors
-                className="has-error"
-                component={props => (
-                  <span className="help-block">{props.children}</span>
-                )}
-                model=".top70Production"
-                messages={{
-                  valueMissing: "Tato položka je povinná"
-                }}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor=".top10Meetings" className="form-label">
-                Top 10 v % schůzkovatelnosti:
-              </label>
-              <Control.textarea
-                model=".top10Meetings"
-                required
-                id="top10Meetings"
-                validateOn={["blur"]}
-                className="form-control"
-                rows="2"
-              />
-              <Errors
-                className="has-error"
-                component={props => (
-                  <span className="help-block">{props.children}</span>
-                )}
-                model=".top10Meetings"
-                messages={{
-                  valueMissing: "Tato položka je povinná"
-                }}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor=".topUMsPercentage" className="form-label">
+              <label htmlFor=".topAgencies" className="form-label">
                 Žebříček UM:
               </label>
               <Control.textarea
-                model=".topUMsPercentage"
+                model=".topAgencies"
                 required
-                id="topUMsPercentage"
+                id="topAgencies"
                 validateOn={["blur"]}
                 className="form-control"
                 rows="2"
@@ -88,7 +42,7 @@ class Home extends Component {
                 component={props => (
                   <span className="help-block">{props.children}</span>
                 )}
-                model=".topUMsPercentage"
+                model=".topAgencies"
                 messages={{
                   valueMissing: "Tato položka je povinná"
                 }}

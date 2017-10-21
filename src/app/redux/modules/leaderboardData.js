@@ -7,7 +7,8 @@ const initialState = {
   top70Production: [],
   top10Meetings: [],
   topUMsPercentage: [],
-  timeline: []
+  timeline: [],
+  topAgencies: []
 };
 
 export default function(state = initialState, action) {
@@ -17,6 +18,7 @@ export default function(state = initialState, action) {
         top70Production: action.top70Production,
         top10Meetings: action.top10Meetings,
         topUMsPercentage: action.topUMsPercentage,
+        topAgencies: action.topAgencies,
         timeline: action.timeline
       });
     case RESET_DATA:
@@ -58,6 +60,14 @@ export function parseData(form, history) {
           };
         }
       ),
+      topAgencies: _.map(_.tail(_.split(form.topAgencies, "\n")), row => {
+        const parsedRow = _.split(row, "\t");
+        return {
+          agentura: _.nth(parsedRow, 2).substring(0, 2),
+          jmeno: _.nth(parsedRow, 2),
+          procento: _.nth(parsedRow, 3)
+        };
+      }),
       timeline: _.map(_.tail(_.split(form.timeline, "\n")), row => {
         const parsedRow = _.split(row, "\t");
         return {
