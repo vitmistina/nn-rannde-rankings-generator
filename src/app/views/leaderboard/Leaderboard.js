@@ -3,6 +3,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
+import { Bar as BarChart } from "react-chartjs";
 import {
   TopAgencies,
   TopUMsPercentage,
@@ -39,8 +40,29 @@ class Leaderboard extends PureComponent {
             list={this.props.leaderboardData.topAgentsPercentage}
           />
           <Top70Production list={this.props.leaderboardData.top70Production} />
+          <div className="col-md-12">
+            <h2 className="">Top 10 poradců a jejich APE</h2>
+          </div>
+          <BarChart
+            data={{
+              labels: _.map(this.props.leaderboardData.timeline, datapoint => {
+                return _.get(datapoint, "jmeno");
+              }),
+              datasets: [
+                {
+                  data: _.map(
+                    this.props.leaderboardData.timeline,
+                    datapoint => {
+                      return _.get(datapoint, "produkce");
+                    }
+                  )
+                }
+              ]
+            }}
+            width="1180"
+            height="400"
+          />
         </div>
-        {<pre>{JSON.stringify(this.props.leaderboardData, null, 2)}</pre>}
       </div>
     );
   }
