@@ -7,6 +7,7 @@ const initialState = {
   top70Production: [],
   top10Meetings: [],
   topUMsPercentage: [],
+  topAgentsPercentage: [],
   timeline: [],
   topAgencies: []
 };
@@ -18,6 +19,7 @@ export default function(state = initialState, action) {
         top70Production: action.top70Production,
         top10Meetings: action.top10Meetings,
         topUMsPercentage: action.topUMsPercentage,
+        topAgentsPercentage: action.topAgentsPercentage,
         topAgencies: action.topAgencies,
         timeline: action.timeline
       });
@@ -38,9 +40,9 @@ export function parseData(form, history) {
           const parsedRow = _.split(row, "\t");
           return {
             posun: null,
-            agentura: _.nth(parsedRow, 0).substring(0, 2),
-            jmeno: _.nth(parsedRow, 1),
-            produkce: _.nth(parsedRow, 2)
+            agentura: null,
+            jmeno: _.nth(parsedRow, 2),
+            produkce: _.nth(parsedRow, 3)
           };
         }
       ),
@@ -54,9 +56,9 @@ export function parseData(form, history) {
         row => {
           const parsedRow = _.split(row, "\t");
           return {
-            agentura: _.nth(parsedRow, 0).substring(0, 2),
-            jmeno: _.nth(parsedRow, 1),
-            procento: _.nth(parsedRow, 2)
+            agentura: _.nth(parsedRow, 1).substring(0, 2),
+            jmeno: _.nth(parsedRow, 3),
+            procento: _.nth(parsedRow, 4)
           };
         }
       ),
@@ -68,11 +70,23 @@ export function parseData(form, history) {
           procento: _.nth(parsedRow, 3)
         };
       }),
+      topAgentsPercentage: _.map(
+        _.tail(_.split(form.topAgentsPercentage, "\n")),
+        row => {
+          const parsedRow = _.split(row, "\t");
+          return {
+            agentura: _.nth(parsedRow, 1).substring(0, 2),
+            UM: _.nth(parsedRow, 3),
+            jmeno: _.nth(parsedRow, 4),
+            procento: _.nth(parsedRow, 5)
+          };
+        }
+      ),
       timeline: _.map(_.tail(_.split(form.timeline, "\n")), row => {
         const parsedRow = _.split(row, "\t");
         return {
-          datum: _.nth(parsedRow, 0),
-          produkce: _.nth(parsedRow, 1)
+          produkce: _.nth(parsedRow, 0).replace(/\D/g, ""),
+          jmeno: _.nth(parsedRow, 1)
         };
       })
     });

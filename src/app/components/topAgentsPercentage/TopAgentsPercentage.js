@@ -2,14 +2,14 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { AgencyLabel } from "../../components";
 import _ from "lodash";
-import "./topUMsPercentage.scss";
+import "./TopAgentsPercentage.scss";
 
-export default class TopUMsPercentage extends PureComponent {
+export default class TopAgentsPercentage extends PureComponent {
   render() {
     const { list } = this.props;
     return (
       <div className="col-md-12">
-        <h2 className="">Žebříček UM podle úspěšnosti na schůzkách</h2>
+        <h2 className="">Žebříček poradců podle úspěšnosti na schůzkách</h2>
         {_.chunk(
           _.slice(list, 0, 16),
           _.ceil(_.size(_.slice(list, 0, 16)) / 2)
@@ -18,7 +18,7 @@ export default class TopUMsPercentage extends PureComponent {
             <div className="col-md-6">
               {column.map((agent, index) => {
                 return (
-                  <div className="top-um-card clearfix" key={index}>
+                  <div className="top-agent-card clearfix" key={index}>
                     <div className="col-md-1">
                       <strong>
                         {index +
@@ -30,7 +30,11 @@ export default class TopUMsPercentage extends PureComponent {
                     <div className="col-md-1">
                       <AgencyLabel data={agent.agentura} />
                     </div>
-                    <div className="col-md-5">{agent.jmeno}</div>
+                    <div className="col-md-5">
+                      {agent.jmeno}
+                      <br />
+                      <span className="um-name">UM: {agent.UM}</span>
+                    </div>
                     <div className="col-md-3 text-right">
                       <strong>{agent.procento}</strong>
                     </div>
@@ -70,6 +74,6 @@ export default class TopUMsPercentage extends PureComponent {
   }
 }
 
-TopUMsPercentage.propTypes = {
+TopAgentsPercentage.propTypes = {
   // top70Production: PropTypes.Array.isRequired
 };

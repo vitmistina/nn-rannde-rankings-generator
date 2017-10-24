@@ -3,7 +3,12 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
-import { TopAgencies } from "../../components";
+import {
+  TopAgencies,
+  TopUMsPercentage,
+  TopAgentsPercentage,
+  Top70Production
+} from "../../components";
 
 class Leaderboard extends PureComponent {
   static propTypes = {
@@ -20,12 +25,20 @@ class Leaderboard extends PureComponent {
           <div className="col-md-12">
             <h1>
               <span className="nn-light-orange">NN</span>{" "}
-              <span className="nn-medium-orange">Rannde</span>
+              <span className="nn-medium-orange">Rannde</span>{" "}
+              <span className="nn-dark-orange">1</span>
             </h1>
           </div>
         </div>
         <div className="col-md-12">
           <TopAgencies list={this.props.leaderboardData.topAgencies} />
+          <TopUMsPercentage
+            list={this.props.leaderboardData.topUMsPercentage}
+          />
+          <TopAgentsPercentage
+            list={this.props.leaderboardData.topAgentsPercentage}
+          />
+          <Top70Production list={this.props.leaderboardData.top70Production} />
         </div>
         {<pre>{JSON.stringify(this.props.leaderboardData, null, 2)}</pre>}
       </div>

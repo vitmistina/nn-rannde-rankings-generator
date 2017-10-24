@@ -5,16 +5,13 @@ import _ from "lodash";
 
 export default class Top70Production extends PureComponent {
   render() {
-    const { top70Production } = this.props;
+    const { list } = this.props;
     return (
       <div>
-        <h2 className="">
-          Soutěž o 70 CCS karet dle objemu převedených prostředků
-        </h2>
-        {_.chunk(
-          top70Production,
-          _.ceil(_.size(top70Production) / 3)
-        ).map((column, columnIndex) => {
+        <div className="col-md-12">
+          <h2 className="">TOP 70 poradců dle % úspěšnosti</h2>
+        </div>
+        {_.chunk(list, _.ceil(_.size(list) / 3)).map((column, columnIndex) => {
           return (
             <div className="col-md-4">
               <table className="table table-responsive table--stripped">
@@ -29,16 +26,9 @@ export default class Top70Production extends PureComponent {
                 <tbody>
                   {column.map((agent, index) => {
                     return (
-                      <tr
-                        key={
-                          index +
-                          columnIndex * _.ceil(_.size(top70Production) / 3)
-                        }
-                      >
+                      <tr key={index + columnIndex * _.ceil(_.size(list) / 3)}>
                         <td>
-                          {index +
-                            1 +
-                            columnIndex * _.ceil(_.size(top70Production) / 3)}
+                          {index + 1 + columnIndex * _.ceil(_.size(list) / 3)}
                         </td>
                         <td>
                           <AgencyLabel data={agent.agentura} />

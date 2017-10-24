@@ -10,3 +10,6 @@ export {
 } from "./topUMsPercentage/TopUMsPercentage";
 export { default as AgencyLabel } from "./agencyLabel/AgencyLabel";
 export { default as TopAgencies } from "./topAgencies/TopAgencies";
+export {
+  default as TopAgentsPercentage
+} from "./topAgentsPercentage/TopAgentsPercentage";

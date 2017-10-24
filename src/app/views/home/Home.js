@@ -27,11 +27,10 @@ class Home extends Component {
           >
             <div className="form-group">
               <label htmlFor=".topAgencies" className="form-label">
-                Žebříček UM:
+                Nej agentury:
               </label>
               <Control.textarea
                 model=".topAgencies"
-                required
                 id="topAgencies"
                 validateOn={["blur"]}
                 className="form-control"
@@ -43,6 +42,72 @@ class Home extends Component {
                   <span className="help-block">{props.children}</span>
                 )}
                 model=".topAgencies"
+                messages={{
+                  valueMissing: "Tato položka je povinná"
+                }}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor=".topUMsPercentage" className="form-label">
+                Top unit manažeři:
+              </label>
+              <Control.textarea
+                model=".topUMsPercentage"
+                id="topUMsPercentage"
+                validateOn={["blur"]}
+                className="form-control"
+                rows="2"
+              />
+              <Errors
+                className="has-error"
+                component={props => (
+                  <span className="help-block">{props.children}</span>
+                )}
+                model=".topUMsPercentage"
+                messages={{
+                  valueMissing: "Tato položka je povinná"
+                }}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor=".topAgentsPercentage" className="form-label">
+                Top poradci:
+              </label>
+              <Control.textarea
+                model=".topAgentsPercentage"
+                id="topAgentsPercentage"
+                validateOn={["blur"]}
+                className="form-control"
+                rows="2"
+              />
+              <Errors
+                className="has-error"
+                component={props => (
+                  <span className="help-block">{props.children}</span>
+                )}
+                model=".topAgentsPercentage"
+                messages={{
+                  valueMissing: "Tato položka je povinná"
+                }}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor=".top70Production" className="form-label">
+                Top 70:
+              </label>
+              <Control.textarea
+                model=".top70Production"
+                id="top70Production"
+                validateOn={["blur"]}
+                className="form-control"
+                rows="2"
+              />
+              <Errors
+                className="has-error"
+                component={props => (
+                  <span className="help-block">{props.children}</span>
+                )}
+                model=".top70Production"
                 messages={{
                   valueMissing: "Tato položka je povinná"
                 }}

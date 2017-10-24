@@ -9,7 +9,9 @@ export default class TopAgencies extends PureComponent {
     const { list } = this.props;
     return (
       <div className="col-md-12">
-        <h2 className="">Žebříček Agentur</h2>
+        <h2 className="">
+          Žebříček poboček podle úspěšnosti sjednaných schůzek
+        </h2>
         {_.chunk(
           _.slice(list, 0, 10),
           _.ceil(_.size(_.slice(list, 0, 10)) / 2)
