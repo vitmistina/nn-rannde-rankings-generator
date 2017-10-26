@@ -99,7 +99,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
-      title: "Zaměstnanecké fórum",
+      title: "NN Rannde 1 žebříček",
       inject: false,
       template: require("html-webpack-template"),
       appMountId: "root",

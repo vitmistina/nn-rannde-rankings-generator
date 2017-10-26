@@ -11,8 +11,8 @@ export default class TopUMsPercentage extends PureComponent {
       <div className="col-md-12">
         <h2 className="">Žebříček UM podle úspěšnosti na schůzkách</h2>
         {_.chunk(
-          _.slice(list, 0, 16),
-          _.ceil(_.size(_.slice(list, 0, 16)) / 2)
+          _.slice(list, 0, 20),
+          _.ceil(_.size(_.slice(list, 0, 20)) / 2)
         ).map((column, columnIndex) => {
           return (
             <div className="col-md-6">
@@ -24,7 +24,7 @@ export default class TopUMsPercentage extends PureComponent {
                         {index +
                           1 +
                           columnIndex *
-                            _.ceil(_.size(_.slice(list, 0, 16)) / 2)}.
+                            _.ceil(_.size(_.slice(list, 0, 20)) / 2)}.
                       </strong>
                     </div>
                     <div className="col-md-1">
@@ -42,8 +42,8 @@ export default class TopUMsPercentage extends PureComponent {
         })}
         <div className="col-md-12 all-um-container">
           {_.chunk(
-            _.slice(list, 16),
-            _.ceil(_.size(_.slice(list, 16)) / 4)
+            _.slice(list, 20),
+            _.ceil(_.size(_.slice(list, 20)) / 4)
           ).map((column, columnIndex) => {
             return (
               <div className="col-md-3" key={columnIndex}>
@@ -55,7 +55,7 @@ export default class TopUMsPercentage extends PureComponent {
                         {index +
                           1 +
                           16 +
-                          columnIndex * _.ceil(_.size(_.slice(list, 16)) / 4)}.
+                          columnIndex * _.ceil(_.size(_.slice(list, 20)) / 4)}.
                       </strong>{" "}
                       {agent.jmeno}
                     </div>

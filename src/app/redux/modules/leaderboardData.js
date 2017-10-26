@@ -34,61 +34,82 @@ export function parseData(form, history) {
   return dispatch => {
     dispatch({
       type: PARSE_DATA,
-      top70Production: _.map(
-        _.slice(_.tail(_.split(form.top70Production, "\n")), 0, 70),
-        row => {
-          const parsedRow = _.split(row, "\t");
-          return {
-            posun: null,
-            agentura: null,
-            jmeno: _.nth(parsedRow, 2),
-            produkce: _.nth(parsedRow, 3)
-          };
-        }
+      top70Production: _.compact(
+        _.map(
+          _.slice(_.tail(_.split(form.top70Production, "\n")), 0, 70),
+          row => {
+            if (_.size(row) > 0) {
+              const parsedRow = _.split(row, "\t");
+              return {
+                posun: null,
+                agentura: _.nth(parsedRow, 1).substring(0, 2),
+                jmeno: _.nth(parsedRow, 3),
+                produkce: _.nth(parsedRow, 4)
+              };
+            }
+            return null;
+          }
+        )
       ),
-      top10Meetings: _.map(_.tail(_.split(form.top10Meetings, "\n")), row => {
-        return {
-          jmeno: row
-        };
-      }),
-      topUMsPercentage: _.map(
-        _.tail(_.split(form.topUMsPercentage, "\n")),
-        row => {
-          const parsedRow = _.split(row, "\t");
+      top10Meetings: _.compact(
+        _.map(_.tail(_.split(form.top10Meetings, "\n")), row => {
           return {
-            agentura: _.nth(parsedRow, 1).substring(0, 2),
-            jmeno: _.nth(parsedRow, 3),
-            procento: _.nth(parsedRow, 4)
+            jmeno: row
           };
-        }
+        })
       ),
-      topAgencies: _.map(_.tail(_.split(form.topAgencies, "\n")), row => {
-        const parsedRow = _.split(row, "\t");
-        return {
-          agentura: _.nth(parsedRow, 2).substring(0, 2),
-          jmeno: _.nth(parsedRow, 2),
-          procento: _.nth(parsedRow, 3)
-        };
-      }),
-      topAgentsPercentage: _.map(
-        _.tail(_.split(form.topAgentsPercentage, "\n")),
-        row => {
-          const parsedRow = _.split(row, "\t");
-          return {
-            agentura: _.nth(parsedRow, 1).substring(0, 2),
-            UM: _.nth(parsedRow, 3),
-            jmeno: _.nth(parsedRow, 4),
-            procento: _.nth(parsedRow, 5)
-          };
-        }
+      topUMsPercentage: _.compact(
+        _.map(_.tail(_.split(form.topUMsPercentage, "\n")), row => {
+          if (_.size(row) > 0) {
+            const parsedRow = _.split(row, "\t");
+            return {
+              agentura: _.nth(parsedRow, 1).substring(0, 2),
+              jmeno: _.nth(parsedRow, 3),
+              procento: _.nth(parsedRow, 4)
+            };
+          }
+          return null;
+        })
       ),
-      timeline: _.map(_.tail(_.split(form.timeline, "\n")), row => {
-        const parsedRow = _.split(row, "\t");
-        return {
-          produkce: _.nth(parsedRow, 0).replace(/\D/g, ""),
-          jmeno: _.nth(parsedRow, 1)
-        };
-      })
+      topAgencies: _.compact(
+        _.map(_.tail(_.split(form.topAgencies, "\n")), row => {
+          if (_.size(row) > 0) {
+            const parsedRow = _.split(row, "\t");
+            return {
+              agentura: _.nth(parsedRow, 2).substring(0, 2),
+              jmeno: _.nth(parsedRow, 2),
+              procento: _.nth(parsedRow, 3)
+            };
+          }
+          return null;
+        })
+      ),
+      topAgentsPercentage: _.compact(
+        _.map(_.tail(_.split(form.topAgentsPercentage, "\n")), row => {
+          if (_.size(row) > 0) {
+            const parsedRow = _.split(row, "\t");
+            return {
+              agentura: _.nth(parsedRow, 1).substring(0, 2),
+              UM: _.nth(parsedRow, 3),
+              jmeno: _.nth(parsedRow, 4),
+              procento: _.nth(parsedRow, 5)
+            };
+          }
+          return null;
+        })
+      ),
+      timeline: _.compact(
+        _.map(_.tail(_.split(form.timeline, "\n")), row => {
+          if (_.size(row) > 0) {
+            const parsedRow = _.split(row, "\t");
+            return {
+              produkce: _.nth(parsedRow, 0).replace(/\D/g, ""),
+              jmeno: _.nth(parsedRow, 1)
+            };
+          }
+          return null;
+        })
+      )
     });
     dispatch(history.push("/zebricek"));
   };

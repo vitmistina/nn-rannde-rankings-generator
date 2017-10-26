@@ -9,7 +9,9 @@ export default class Top70Production extends PureComponent {
     return (
       <div>
         <div className="col-md-12">
-          <h2 className="">TOP 70 poradců dle % úspěšnosti</h2>
+          <h2 className="">
+            TOP 70 poradců podle úspěšnosti z navolaných schůzek
+          </h2>
         </div>
         {_.chunk(list, _.ceil(_.size(list) / 3)).map((column, columnIndex) => {
           return (

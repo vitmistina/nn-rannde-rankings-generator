@@ -61,6 +61,7 @@ export default class TopAgentsPercentage extends PureComponent {
                           16 +
                           columnIndex * _.ceil(_.size(_.slice(list, 16)) / 4)}.
                       </strong>{" "}
+                      <span className="um-name">{agent.procento}</span>{" "}
                       {agent.jmeno}
                     </div>
                   );

@@ -33,6 +33,5 @@ export default class AgencyLabel extends Component {
 }
 
 AgencyLabel.propTypes = {
-  data: PropTypes.string.isRequired,
-  model: PropTypes.object.isRequired
+  data: PropTypes.string.isRequired
 };

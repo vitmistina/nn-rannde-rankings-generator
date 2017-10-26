@@ -17,10 +17,13 @@ export default class TopAgencies extends PureComponent {
           _.ceil(_.size(_.slice(list, 0, 10)) / 2)
         ).map((column, columnIndex) => {
           return (
-            <div className="col-md-6">
+            <div className="col-md-6" key={columnIndex}>
               {column.map((agent, index) => {
                 return (
-                  <div className="top-um-card" key={index}>
+                  <div
+                    className="top-um-card"
+                    key={(index + 1) * (columnIndex + 1)}
+                  >
                     <div className="col-md-1">
                       <strong>
                         {index +
