@@ -7,8 +7,8 @@
     "flow": "node_modules/.bin/flow",
     "test": "cross-env NODE_ENV=test nyc mocha test/.setup.js test/**/*.spec.js --recursive",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "dev": "rimraf docs/public/assets/ && cross-env NODE_ENV=dev webpack --config webpack.dev.config.js",
-    "prod": "rimraf docs/public/assets/ && cross-env NODE_ENV=production webpack -p --config webpack.production.config.js ",
+    "dev": "rimraf docs && cross-env NODE_ENV=dev webpack --config webpack.dev.config.js",
+    "prod": "rimraf docs && cross-env NODE_ENV=production webpack -p --config webpack.production.config.js ",
     "start": "cross-env NODE_ENV=dev node server.hot.reload",
     "serve-dev": "npm run dev && cross-env NODE_ENV=dev nodemon ./src/server/index.js",
     "serve-prod": "npm run prod && cross-env NODE_ENV=production node ./src/server/index.js"
@@ -122,6 +122,7 @@
     "react-bootstrap": "^0.31.2",
     "react-chartjs": "^0.8.0",
     "react-dom": "^15.6.1",
+    "react-dropzone": "^4.2.9",
     "react-modal": "^2.2.2",
     "react-motion": "^0.5.0",
     "react-notification": "^6.7.1",
@@ -132,6 +133,7 @@
     "react-router-redux": "^4.0.8",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "xlsx": "^0.12.1"
   }
 }

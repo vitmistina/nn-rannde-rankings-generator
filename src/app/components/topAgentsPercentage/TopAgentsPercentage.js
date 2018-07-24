@@ -9,7 +9,9 @@ export default class TopAgentsPercentage extends PureComponent {
     const { list } = this.props;
     return (
       <div className="col-md-12">
-        <h2 className="">Žebříček poradců podle úspěšnosti na schůzkách</h2>
+        <h2 className="">
+          Žebříček poradců podle úspěšnosti ze schůzek sjednaných call centrem
+        </h2>
         {_.chunk(
           _.slice(list, 0, 16),
           _.ceil(_.size(_.slice(list, 0, 16)) / 2)
@@ -53,7 +55,7 @@ export default class TopAgentsPercentage extends PureComponent {
               <div className="col-md-3" key={columnIndex}>
                 {column.map((agent, index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       {" "}
                       <strong>
                         {index +
@@ -61,8 +63,8 @@ export default class TopAgentsPercentage extends PureComponent {
                           16 +
                           columnIndex * _.ceil(_.size(_.slice(list, 16)) / 4)}.
                       </strong>{" "}
-                      <span className="um-name">{agent.procento}</span>{" "}
-                      {agent.jmeno}
+                      {agent.jmeno}{" "}
+                      <span className="um-name">{agent.procento}</span>
                     </div>
                   );
                 })}

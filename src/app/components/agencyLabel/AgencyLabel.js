@@ -6,6 +6,8 @@ export default class AgencyLabel extends Component {
   render() {
     const { data } = this.props;
     const model = {
+      10: "rgb(164,204,234)",
+      14: "rgb(164,204,234)",
       15: "rgb(164,204,234)",
       16: "rgb(164,204,234)",
       17: "rgb(164,204,234)",

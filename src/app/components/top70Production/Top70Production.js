@@ -10,7 +10,7 @@ export default class Top70Production extends PureComponent {
       <div>
         <div className="col-md-12">
           <h2 className="">
-            TOP 70 poradců podle úspěšnosti z navolaných schůzek
+            TOP 30 poradců podle úspěšnosti na zrealizovaných schůzkách
           </h2>
         </div>
         {_.chunk(list, _.ceil(_.size(list) / 3)).map((column, columnIndex) => {
@@ -36,7 +36,7 @@ export default class Top70Production extends PureComponent {
                           <AgencyLabel data={agent.agentura} />
                         </td>
                         <td>{agent.jmeno}</td>
-                        <td className="text-right">{agent.produkce}</td>
+                        <td className="text-right">{agent.procento}</td>
                       </tr>
                     );
                   })}

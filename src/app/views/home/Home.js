@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Control, Form, Errors, actions } from "react-redux-form";
+import Dropzone from "react-dropzone";
 
 class Home extends Component {
   static propTypes = {
@@ -14,11 +15,34 @@ class Home extends Component {
   };
 
   render() {
+    const { leaderboardData, parseXLSX, resetData, history } = this.props;
+    const { dataLoaded } = leaderboardData;
     return (
       <div className="col-md-8 col-md-offset-2">
         <div className="well">
           <h2>Zadání informací</h2>
-          <Form
+          {!dataLoaded && (
+            <div className="form-group">
+              <Dropzone
+                className="dropzone text-center"
+                multiple={false}
+                onDrop={files => {
+                  _.map(files, file => {
+                    parseXLSX(file, history);
+                  });
+                }}
+              >
+                <h2>👇</h2>
+                <p>Přetáhni sem report z RaNNde</p>
+              </Dropzone>
+            </div>
+          )}
+          {dataLoaded && (
+            <Link to="/zebricek" className="btn btn-primary btn-lg">
+              Vygenerovat
+            </Link>
+          )}
+          {/* <Form
             model="formData.input"
             onSubmit={formValues => {
               this.props.parseData(formValues, this.props.history);
@@ -140,7 +164,14 @@ class Home extends Component {
                 Vygenerovat
               </button>
             </div>
-          </Form>
+          </Form> */}
+          <button
+            type="button"
+            className="btn btn-danger btn-lg"
+            onClick={resetData}
+          >
+            Reset
+          </button>
         </div>
         <pre>{JSON.stringify(this.props.inputData, null, 2)}</pre>
         <pre>{JSON.stringify(this.props.leaderboardData, null, 2)}</pre>

@@ -9,61 +9,66 @@ export default class TopUMsPercentage extends PureComponent {
     const { list } = this.props;
     return (
       <div className="col-md-12">
-        <h2 className="">Žebříček UM podle úspěšnosti na schůzkách</h2>
-        {_.chunk(
-          _.slice(list, 0, 20),
-          _.ceil(_.size(_.slice(list, 0, 20)) / 2)
-        ).map((column, columnIndex) => {
-          return (
-            <div className="col-md-6">
-              {column.map((agent, index) => {
-                return (
-                  <div className="top-um-card clearfix" key={index}>
-                    <div className="col-md-1">
-                      <strong>
-                        {index +
-                          1 +
-                          columnIndex *
-                            _.ceil(_.size(_.slice(list, 0, 20)) / 2)}.
-                      </strong>
-                    </div>
-                    <div className="col-md-1">
-                      <AgencyLabel data={agent.agentura} />
-                    </div>
-                    <div className="col-md-5">{agent.jmeno}</div>
-                    <div className="col-md-3 text-right">
-                      <strong>{agent.procento}</strong>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
-        <div className="col-md-12 all-um-container">
-          {_.chunk(
-            _.slice(list, 20),
-            _.ceil(_.size(_.slice(list, 20)) / 4)
-          ).map((column, columnIndex) => {
+        <h2 className="">
+          Top 10 UM podle úspěšnosti týmu ze schůzek sjednaných call centrem
+        </h2>
+        {_
+          .chunk(_.slice(list, 0, 20), _.ceil(_.size(_.slice(list, 0, 20)) / 2))
+          .map((column, columnIndex) => {
             return (
-              <div className="col-md-3" key={columnIndex}>
+              <div className="col-md-6" key={columnIndex}>
                 {column.map((agent, index) => {
                   return (
-                    <div>
-                      {" "}
-                      <strong>
-                        {index +
-                          1 +
-                          16 +
-                          columnIndex * _.ceil(_.size(_.slice(list, 20)) / 4)}.
-                      </strong>{" "}
-                      {agent.jmeno}
+                    <div
+                      className="top-um-card clearfix"
+                      key={columnIndex + "-" + index}
+                    >
+                      <div className="col-md-1">
+                        <strong>
+                          {index +
+                            1 +
+                            columnIndex *
+                              _.ceil(_.size(_.slice(list, 0, 20)) / 2)}.
+                        </strong>
+                      </div>
+                      <div className="col-md-1">
+                        <AgencyLabel data={agent.agentura} />
+                      </div>
+                      <div className="col-md-5">{agent.jmeno}</div>
+                      <div className="col-md-3 text-right">
+                        <strong>{agent.procento}</strong>
+                      </div>
                     </div>
                   );
                 })}
               </div>
             );
           })}
+        <div className="col-md-12 all-um-container">
+          {_
+            .chunk(_.slice(list, 20), _.ceil(_.size(_.slice(list, 20)) / 4))
+            .map((column, columnIndex) => {
+              return (
+                <div className="col-md-3" key={columnIndex}>
+                  {column.map((agent, index) => {
+                    return (
+                      <div key={index}>
+                        {" "}
+                        <strong>
+                          {index +
+                            1 +
+                            16 +
+                            columnIndex *
+                              _.ceil(_.size(_.slice(list, 20)) / 4)}.
+                        </strong>{" "}
+                        {agent.jmeno}{" "}
+                        <span className="um-name">{agent.procento}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
         </div>
       </div>
     );

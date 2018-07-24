@@ -55,7 +55,8 @@ class Leaderboard extends PureComponent {
                     datapoint => {
                       return _.get(datapoint, "produkce");
                     }
-                  )
+                  ),
+                  fillColor: "#7caad6"
                 }
               ]
             }}
